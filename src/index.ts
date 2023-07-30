@@ -1,6 +1,8 @@
 import { Configuration, OpenAIApi } from "openai"
 import dotenv from "dotenv";
 import readlineSync from 'readline-sync'
+import Colors from 'colors'
+import { startLoading, stopLoading } from "./loading.js";
 
 dotenv.config();
 
@@ -17,7 +19,7 @@ const messages: { role: 'user' | 'assistant'; content: string }[] = [];
 
   while (true) {
     // 获取用户的输入
-    const userInput = readlineSync.question("you:")
+    const userInput = readlineSync.question(Colors.red(`You:  `))
 
 
     // 判断用户的输入
@@ -30,11 +32,16 @@ const messages: { role: 'user' | 'assistant'; content: string }[] = [];
     }
 
 
+
     // 将用户的输入添加到消息列表中
     messages.push({
       role: 'user',
       content: userInput
     })
+
+    // 开启一个loading
+    startLoading()
+    stopLoading()
 
     const chatCompletion = await openAi.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -49,14 +56,14 @@ const messages: { role: 'user' | 'assistant'; content: string }[] = [];
     });
 
     const answer = chatCompletion.data.choices[0].message?.content;
-    console.log(answer);
+    console.log(Colors.rainbow('Bot: '), answer)
+
 
     // 把机器人的回答添加到消息列表中
     messages.push({
       role: 'assistant',
       content: answer || ''
     })
-    console.log(messages)
   }
 })();
 
