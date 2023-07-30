@@ -8,7 +8,7 @@ dotenv.config();
 
 const openAi = new OpenAIApi(
   new Configuration({
-    basePath: "https://jiushi21.win/v1",
+    basePath: process.env.OPEN_API_BASE_PATH,
     apiKey: process.env.OPEN_API_KEY,
   })
 );
