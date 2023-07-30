@@ -1,12 +1,15 @@
 {
-  "name": "gpt-bot",
+  "name": "bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "./dist/bundle.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-esm ./src/index.ts"
+    "dev": "ts-node-esm ./src/index.ts",
+    "build": "rollup -c rollup.config.js",
+    "start": "node ./dist/bundle.js"
   },
   "keywords": [],
   "author": "",
@@ -16,11 +19,14 @@
     "openai": "^3.3.0"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.2",
     "@types/node": "^20.4.5",
     "@types/readline-sync": "^1.4.4",
     "colors": "^1.4.0",
     "ora": "^6.3.1",
     "readline-sync": "^1.4.10",
-    "rollup": "^3.27.0"
+    "rollup": "^3.27.0",
+    "rollup-plugin-add-shebang": "^0.3.1",
+    "tslib": "^2.6.1"
   }
 }

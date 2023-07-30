@@ -4,16 +4,20 @@ import { addAssistantMessage, messages } from "./message.js";
 import Colors from 'colors'
 
 import dotenv from "dotenv";
-import { resolve } from "path";
+import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
 
-dotenv.config();
+// dotenv.config();
+dotenv.config({
+  path: resolve(dirname(fileURLToPath(import.meta.url)), '../.env'),
+});
+
 
 let openAi: OpenAIApi
 
-console.log('process.env.OPEN_API_BASE_PATH', process.env.OPEN_API_BASE_PATH)
-console.log('process.env.OPEN_API_KEY', process.env.OPEN_API_KEY)
+// console.log('process.env.OPEN_API_BASE_PATH', process.env.OPEN_API_BASE_PATH)
+// console.log('process.env.OPEN_API_KEY', process.env.OPEN_API_KEY)
 export function initBot() {
   openAi = new OpenAIApi(
     new Configuration({
