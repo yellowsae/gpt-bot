@@ -19,7 +19,8 @@
     "@types/node": "^20.4.5",
     "@types/readline-sync": "^1.4.4",
     "colors": "^1.4.0",
-    "ora": "6",
-    "readline-sync": "^1.4.10"
+    "ora": "^6.3.1",
+    "readline-sync": "^1.4.10",
+    "rollup": "^3.27.0"
   }
 }
